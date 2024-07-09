@@ -71,11 +71,10 @@ The code to perform these analyses is found in ZSduration.R
 
 # FL/CT assay
 
-This experiment compares adult emergence rates of *Z. indianus* lines collected from Florida (FL) and Connecticut (CT) with and without the presence of parasitoid wasps. These data are shown in Figure 2.
+This experiment compares adult emergence rates of *Z. indianus* lines collected from Florida (FL) and Connecticut (CT) with the presence of parasitoid wasps. These data are shown in Figure 2.
 
 # Data files:
 
-FL_CT_N.csv: Data file containing emerged adult fly counts of FL/CT lines without parasitoids (control vials)
 FL_CT_Y.csv: Data file containing emerged adult fly counts of FL/CT lines with parasitoids
 
 # Columns
