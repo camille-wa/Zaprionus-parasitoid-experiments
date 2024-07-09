@@ -1,4 +1,4 @@
-# Strength of enemy release from parasitoids is context-dependent in the invasive African Fig Fly, Zaprionus indianus
+# Strength of enemy release from parasitoids is context-dependent in the invasive African Fig Fly, *Zaprionus indianus*
 
 Invasive species are thought to succeed in new environments in part because they are less susceptible to diseases and parasites that have co-evolved with local hosts, giving them a competitive advantage. We tested this hypothesis by competing an invasive fruit fly against established species in the presence of parasitoid wasps that lay eggs in fruit fly larvae. We found that the invasive species generally experiences less harm from parasitoids, but the extent of its advantage depended on the species it was competing against and the number of larvae present.
 
@@ -7,8 +7,7 @@ Invasive species are thought to succeed in new environments in part because they
 1. ZHcomp.csv
 2. ZScomp.csv
 3. FL_CT_Y.csv
-4. FL_CT_N.csv
-5. ZSduration.csv
+4. ZSduration.csv
 
 # Code file list
 
