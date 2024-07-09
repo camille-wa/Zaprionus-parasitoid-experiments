@@ -46,7 +46,7 @@ The code to perform these analyses is found in competition_analysis.R
 
 # Host-switching assay
 
-This experiment compares adult emergence rates of *Z. indianus* and *Z. simulans* exposed to parasitoids for different amounts of time. These data are shown in Figure 4.
+This experiment compares adult emergence rates of *Z. indianus* and *D. simulans* exposed to parasitoids for different amounts of time. These data are shown in Figure 4.
 
 # Data file:
 
