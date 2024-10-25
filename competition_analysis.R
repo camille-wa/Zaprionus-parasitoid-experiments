@@ -16,8 +16,10 @@ library(ggpubfigs)
 # Z. indianus / D. hydei competition counts 
 ##########################################
 
-#read data 
-ZHcomp <- fread ("~/Library/CloudStorage/Box-Box/ZHcomp.csv")
+#read data  
+ZH <- read.csv("ZHcomp.csv")
+#convert to data table 
+ZHcomp <- as.data.table(ZH)
 # melt data 
 ZHcomp.melt <- melt(ZHcomp, id.vars=c("vial","start.date","start.num","type","wasp"),measure.vars=names(ZHcomp)[6:ncol(ZHcomp)])
 # split columns 
@@ -46,7 +48,9 @@ highZHinter_subset <- subset_inter[subset_inter$start.num == 150,]
 ##########################################
 
 #read in data 
-ZScomp <- fread ("~/Library/CloudStorage/Box-Box/ZScomp_2024.csv")
+ZS <- read.csv("ZScomp_2024.csv")
+#convert to data table 
+ZScomp <- as.data.table(ZS)
 #melt data 
 ZScomp.melt <- melt(ZScomp, id.vars=c("vial","start.date","start.num","type","wasp"),measure.vars=names(ZScomp)[6:ncol(ZScomp)])
 #split columns 
@@ -144,6 +148,7 @@ highZH.contrast <- contrast(emm_highZHinter, method = "pairwise")
 print(highZH.contrast) 
 
 ##### Z. indianus x D. simulans  
+
 ##low density GLM ZS
 lowZSinter <- subset_inter_s[subset_inter_s$start.num == 50,]
 lowZSinter.model <- glm(cbind(total_emerged, actstartnum - total_emerged) ~ (wasp*species), 
@@ -170,28 +175,12 @@ print(highZS.contrast)
 #######################
 # plotting 
 #######################
-#Figure 1 intraspecific plot 
-
-intraplot <- ggplot(data = intraspecific_combined)  + 
-  geom_boxplot(aes(x = density, y = prop, fill = wasp), 
-               color = "black", width = 1, size = 0.2) +  
-  scale_fill_manual(values = friendly_pal("tol_eight")[c(3, 7)],  
-                    labels = c("N" = "Absent", "Y" = "Present")) +
-  labs(x = "Starting density", y = "Proportion emerged", fill = "Parasitoid") +
-  theme(panel.background = element_rect(fill = "white", color = "gray"),
-        legend.key = element_rect(color = NA)) +
-  ylim(0, 1)
-
-print(intraplot)
-
-
-#Figure 3 interspecific competition plot 
 
 #Z. indianus x D. hydei plot 
 
 ZHinterplot <- ggplot(data = subset_inter) + 
-  geom_boxplot(aes(x = wasp, y = prop, fill = species)) +
-  facet_wrap(~ start.num, ncol = 2) +
+  geom_boxplot(aes(x = wasp, y = prop, fill = species), size = 0.3) +
+  facet_wrap(~ start.num, ncol = 1) +  # Stack facets vertically
   scale_fill_manual(values = friendly_pal("bright_seven")[c(5, 7)], 
                     labels = c("Z" = expression(italic("Z. indianus")),
                                "H" = expression(italic("D. hydei")))) +  
@@ -203,8 +192,7 @@ ZHinterplot <- ggplot(data = subset_inter) +
         plot.background = element_rect(fill = "white"), 
         panel.border = element_rect(color = "gray", fill = NA),
         legend.key = element_blank()) +  
-  labs(x = "Parasitoid", y = "Proportion emerged") +
-  ylab("Proportion emerged") +
+  labs(x = "Parasitoid", y = "") +
   ylim(0, 1) 
 
 print(ZHinterplot)
@@ -212,8 +200,8 @@ print(ZHinterplot)
 #Z. indianus x D. simulans plot 
 
 ZSinterplot <- ggplot(data = subset_inter_s) + 
-  geom_boxplot(aes(x = wasp, y = prop, fill = species)) +
-  facet_wrap(~ start.num, ncol = 2) +
+  geom_boxplot(aes(x = wasp, y = prop, fill = species), size = 0.3) +
+  facet_wrap(~ start.num, ncol = 1) +  # Stack facets vertically
   scale_fill_manual(values = friendly_pal("bright_seven")[c(6, 7)], 
                     labels = c("Z" = expression(italic("Z. indianus")),
                                "S" = expression(italic("D. simulans")))) +
@@ -225,19 +213,37 @@ ZSinterplot <- ggplot(data = subset_inter_s) +
         plot.background = element_rect(fill = "white"), 
         panel.border = element_rect(color = "gray", fill = NA),
         legend.key = element_blank()) +  
-  labs(x = "Parasitoid", y = "Proportion emerged") +
+  labs(x = "", y = "") +
   ylim(0, 1)  
 
 print(ZSinterplot)
 
-#Combine ZH/ZS interplots
-ZHZSinterplot <- plot_grid(
-  ZHinterplot, ZSinterplot,
-  labels = c("A", "B"),    # Labels for the panels
-  ncol = 1,                # Number of columns (1 for vertical layout)
-  align = 'v'              # Align plots vertically
+#Z. indianus only 
+
+intraplot_test <- ggplot(data = intraspecific_combined) + 
+  geom_boxplot(aes(x = wasp, y = prop, fill = species), 
+               color = "black", width = 0.4, size = 0.3) +  # Decrease width to make the boxes narrower
+  scale_fill_manual(values = friendly_pal("bright_seven")[7],  
+                    labels = c("Z" = bquote(atop(italic("Z. indianus"), "(intraspecific)")))) +
+  labs(x = "", y = "Proportion emerged", fill = "species") +  # Set y-axis label
+  scale_x_discrete(labels = c("N" = "Absent", "Y" = "Present")) +  # Update x-axis labels
+  theme(panel.background = element_rect(fill = "white", color = "gray"),
+        panel.grid.major = element_blank(),
+        legend.key = element_rect(color = NA)) +
+  ylim(0, 1) +  # Keep the same y-axis limits
+  facet_wrap(~ density, labeller = as_labeller(c("low" = "50", "high" = "150")), ncol = 1)  # Stack facets vertically
+
+print(intraplot_test)
+
+
+#Combine ZH/ZS/ZAP only interplots
+ZHZSZZinterplot <- plot_grid(
+  ZHinterplot, ZSinterplot, intraplot_test,
+  labels = c("A", "B", "C"),    # Labels for the panels
+  nrow = 1,                     # One row for horizontal layout
+  align = 'h',                  # Align plots horizontally
+  rel_widths = c(1, 1, 1)      # Set equal widths for each plot
 )
 
-print(ZHZSinterplot)
-
+print(ZHZSZZinterplot)
 
