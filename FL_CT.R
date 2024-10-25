@@ -59,10 +59,11 @@ summary(FLCT.model)
 #Figure 2 genetic variation plot 
 ggplot(FLCT_Y.total, aes(x = state, y = prop, fill = state)) +
   geom_boxplot(fill = "white") +  
-  geom_point(aes(color = line), size = 3, position = position_jitter(width = 0.2)) +
+  geom_point(aes(color = line), size = 3, position = position_jitter(width = 0.2, height = 0)) +
   labs(x = "State", y = "Proportion emerged") +
   theme_minimal() +
   guides(fill = FALSE, color = FALSE)
+
 
 
 
