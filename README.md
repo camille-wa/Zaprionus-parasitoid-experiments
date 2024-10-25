@@ -17,7 +17,7 @@ Invasive species are thought to succeed in new environments in part because they
 
 # Interspecific / intraspecific competition assays
 
-These experiments examine adult emergence rates of fly larva exposed to parasitoid wasps. Vials contained either a single species (*Z. indianus*, intraspecific competition), or two species (*Z. indianus* with either *D. simulans* or *D. hyde*i, interspecific). Data in these files are shown in Figures 1 and 3.
+These experiments examine adult emergence rates of fly larva exposed to parasitoid wasps. Vials contained either a single species (*Z. indianus*, intraspecific competition), or two species (*Z. indianus* with either *D. simulans* or *D. hyde*i, interspecific). Data in these files are shown in Figure 1. 
 
 # Data files:
 
