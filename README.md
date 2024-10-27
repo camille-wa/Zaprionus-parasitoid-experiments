@@ -5,7 +5,7 @@ Invasive species are thought to succeed in new environments in part because they
 # Data file list
 
 1. ZHcomp.csv
-2. ZScomp.csv
+2. ZScomp_2024.csv
 3. FL_CT_Y.csv
 4. ZSduration.csv
 
@@ -22,7 +22,7 @@ These experiments examine adult emergence rates of fly larva exposed to parasito
 # Data files:
 
 ZHcomp.csv: Data file containing emerged adult fly counts for *Z. indianus* and *D. hydei* interspecific/intraspecific competition.
-ZScomp.csv: Data file containing emerged adult fly counts for *Z. indianus* and *D. simulans* interspecific/intraspecific competition.
+ZScomp_2024.csv: Data file containing emerged adult fly counts for *Z. indianus* and *D. simulans* interspecific/intraspecific competition.
 
 # Columns
 
@@ -46,7 +46,7 @@ The code to perform these analyses is found in competition_analysis.R
 
 # Host-switching assay
 
-This experiment compares adult emergence rates of *Z. indianus* and *D. simulans* exposed to parasitoids for different amounts of time. These data are shown in Figure 4.
+This experiment compares adult emergence rates of *Z. indianus* and *D. simulans* exposed to parasitoids for different amounts of time. These data are shown in Figure 3.
 
 # Data file:
 
